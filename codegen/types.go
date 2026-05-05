@@ -1,0 +1,26 @@
+package codegen
+
+var typeMap = map[string]string{
+    "i8":    "int8",
+    "i16":   "int16",
+    "i32":   "int32",
+    "i64":   "int64",
+    "u8":    "uint8",
+    "u16":   "uint16",
+    "u32":   "uint32",
+    "u64":   "uint64",
+    "isize": "int",
+    "usize": "uintptr",
+    "f32":   "float32",
+    "f64":   "float64",
+    "bool":  "bool",
+    "void":  "",
+    "string": "string",
+}
+
+func mapType(asType string) string {
+    if goType, ok := typeMap[asType]; ok {
+        return goType
+    }
+    return asType
+}
