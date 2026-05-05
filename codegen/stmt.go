@@ -148,15 +148,8 @@ func (g *Generator) genForInit(node *sitter.Node) string {
 			if child.Type() == "variable_declarator" {
 				name := g.text(g.childByField(child, "name"))
 				val := g.childByField(child, "value")
-				typ := g.childByField(child, "type")
 				if val != nil {
-					if typ != nil {
-						return fmt.Sprintf("%s := %s(%s)", name, g.genType(typ), g.genExprStr(val))
-					}
 					return fmt.Sprintf("%s := %s", name, g.genExprStr(val))
-				}
-				if typ != nil {
-					return fmt.Sprintf("var %s %s", name, g.genType(typ))
 				}
 				return name
 			}
